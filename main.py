@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from contato import Contact
-from contato_agenda import ContactBook
+from contact import Contact, ContactBook
 
 class ContactApp:
     def __init__(self, root):
