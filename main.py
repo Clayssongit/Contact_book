@@ -63,8 +63,7 @@ class ContactApp:
     def display_contacts(self):
         contacts = self.contact_book.get_all_contacts()
         if contacts:
-            contact_list = "\n".join(str(contact) for contact in contacts)
-            messagebox.showinfo("Contatos", contact_list)
+            self.open_contacts_window(contacts)
         else:
             messagebox.showinfo("Contatos", "Nenhum contato encontrado.")
 
@@ -75,6 +74,16 @@ class ContactApp:
             messagebox.showinfo("Contato Encontrado", str(contact))
         else:
             messagebox.showerror("Erro", "Contato não encontrado.")
+
+    def open_contacts_window(self, contacts):
+        window = tk.Toplevel(self.root)
+        window.title("Lista de Contatos")
+        frame = ttk.Frame(window, padding="10")
+        frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+
+        for i, contact in enumerate(contacts):
+            contact_label = ttk.Label(frame, text=str(contact), font=("Helvetica", 10))
+            contact_label.grid(row=i, column=0, pady=5, sticky=tk.W)
 
     def clear_fields(self):
         self.name_entry.delete(0, tk.END)
